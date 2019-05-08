@@ -4,8 +4,12 @@ import data from './data/data.json';
 const app = express();
 const port = 3000;
 
+// set up static patchs
+app.use(express.static('public'));
+app.use('/images', express.static('images'));
+
 app.get('/', (req, res) => {
-  res.send(`GET request with / on port ${port}`);
+  res.json(data);
 });
 app.post('/newItem', (req, res) => {
   res.send(`POST request with /newItem on port ${port}`);
