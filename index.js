@@ -11,12 +11,20 @@ app.use('/images', express.static('images'));
 app.get('/', (req, res) => {
   res.json(data);
 });
+
+app.get('/item/:id', (req, res) => {
+  let user = Number(req.params.id);
+  res.send(data[user]);
+});
+
 app.post('/newItem', (req, res) => {
   res.send(`POST request with /newItem on port ${port}`);
 });
+
 app.put('/item', (req, res) => {
   res.send(`PUT request with /newItem on port ${port}`);
 });
+
 app.delete('/item', (req, res) => {
   res.send(`DELETE request with /newItem on port ${port}`);
 });
