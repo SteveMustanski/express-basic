@@ -24,20 +24,23 @@ app.get(
   },
 );
 
-app.post('/newItem', (req, res) => {
-  res.send(`POST request with /newItem on port ${port}`);
-});
-
-app.put('/item', (req, res) => {
-  res.send(`PUT request with /newItem on port ${port}`);
-});
+app
+  .route('/item')
+  .get((req, res) => {
+    res.send(`GET request with /newItem on port ${port}`);
+  })
+  .put((req, res) => {
+    res.send(`PUT request with /newItem on port ${port}`);
+  })
+  .post((req, res) => {
+    res.send(`POST request with /newItem on port ${port}`);
+  })
+  .delete((req, res) => {
+    res.send(`DELETE request with /newItem on port ${port}`);
+  });
 
 app.get('/redirect', (req, res) => {
   res.redirect('http://linkedin.com');
-});
-
-app.delete('/item', (req, res) => {
-  res.send(`DELETE request with /newItem on port ${port}`);
 });
 
 app.listen(port, () => {
