@@ -33,7 +33,9 @@ app.post('/newItem', (req, res) => {
 app
   .route('/item')
   .get((req, res) => {
-    res.send(`GET request with /newItem on port ${port}`);
+    throw new Error();
+    // comment out to force error for example
+    //res.send(`GET request with /newItem on port ${port}`);
   })
   .put((req, res) => {
     res.send(`PUT request with /newItem on port ${port}`);
@@ -49,6 +51,13 @@ app.get('/redirect', (req, res) => {
   res.redirect('http://linkedin.com');
 });
 
+// handle errors
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res
+    .status(500)
+    .send(`This is an example of an error that was thrown: ${err.stack}`);
+});
 app.listen(port, () => {
   console.log(`Application is listening on port ${port}`);
 });
