@@ -4,9 +4,11 @@ import data from './data/data.json';
 const app = express();
 const port = 3000;
 
-// set up static patchs
+// set up static paths
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json(data);
@@ -23,6 +25,10 @@ app.get(
     console.log('This was executed as next was called.');
   },
 );
+
+app.post('/newItem', (req, res) => {
+  res.send(req.body);
+});
 
 app
   .route('/item')
