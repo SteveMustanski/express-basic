@@ -10,6 +10,9 @@ app.use('/images', express.static('images'));
 
 app.use(express.json());
 
+// example of adding proxy
+app.set('trust proxy', 'loopback');
+
 app.get('/', (req, res) => {
   res.json(data);
 });
